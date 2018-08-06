@@ -5,24 +5,13 @@ export class ItemView extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
-      item: props.item.item
-    }
+      item: props.item.item,
+      callback: props.callback
+    };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     id: nextProps.id,
-  //     name: nextProps.name,
-  //     image: nextProps.image,
-  //     description: nextProps.description,
-  //     price: nextProps.price,
-  //   });
-  // }
-
   render() {
-    console.log(this.state.item);
     return (
       <Card
         title={this.state.item.name}
@@ -35,8 +24,16 @@ export class ItemView extends React.Component {
           backgroundColor='#03A9F4'
           // fontFamily='Lato'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          onPress={this.onPress.bind(this)}
           title='VIEW NOW'/>
       </Card>
     )
+  }
+
+  onPress() {
+    console.log(`Item with key ${this.state.item.key} is pressed`);
+    if (this.state.callback) {
+      this.state.callback(this.state.item.key)
+    }
   }
 }

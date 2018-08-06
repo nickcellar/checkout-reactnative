@@ -1,5 +1,6 @@
 import {Button} from "react-native";
 import React from "react";
+import {items} from "../models/ItemData";
 
 export class CheckoutScreen extends React.Component {
 
@@ -13,9 +14,14 @@ export class CheckoutScreen extends React.Component {
       <Button
         title="New Checkout"
         onPress={() =>
-          navigate('NewItem', {name: 'Jane'})
+          navigate('NewItem', {callback: this.callback})
         }
       />
     );
+  }
+
+  callback(selectedItemKey) {
+    let item = items[selectedItemKey];
+    // console.log(item);
   }
 }

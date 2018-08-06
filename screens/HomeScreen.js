@@ -13,7 +13,7 @@ export class HomeScreen extends React.Component {
       <Button
         title="New Checkout"
         onPress={() => {
-          console.log('hello');
+          // console.log('hello');
           navigate('Checkout', {name: 'Jane'})
         }}
       />
