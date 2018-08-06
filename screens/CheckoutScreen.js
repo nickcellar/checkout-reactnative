@@ -1,10 +1,10 @@
 import {Button} from "react-native";
 import React from "react";
 
-export class HomeScreen extends React.Component {
+export class CheckoutScreen extends React.Component {
 
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'Checkout',
   };
 
   render() {
@@ -12,10 +12,9 @@ export class HomeScreen extends React.Component {
     return (
       <Button
         title="New Checkout"
-        onPress={() => {
-          console.log('hello');
-          navigate('Checkout', {name: 'Jane'})
-        }}
+        onPress={() =>
+          navigate('NewItem', {name: 'Jane'})
+        }
       />
     );
   }
