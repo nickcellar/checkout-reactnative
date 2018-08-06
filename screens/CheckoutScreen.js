@@ -1,13 +1,22 @@
-import {View, StyleSheet} from "react-native";
+import {View, Alert} from "react-native";
 import React from "react";
 import {items} from "../models/ItemData";
-import {Button, Card, ListItem, Text} from "react-native-elements";
+import {Button, Card, Icon, ListItem} from "react-native-elements";
 
 export class CheckoutScreen extends React.Component {
 
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: 'Checkout',
-  };
+    headerRight: (
+      <Icon
+        containerStyle={{marginRight: 16}}
+        onPress={navigation.state.params.onDoneClicked}
+        name='md-checkmark'
+        color='#000000'
+        type='ionicon'
+      />
+    ),
+  });
 
   constructor(props) {
     super(props);
@@ -16,23 +25,26 @@ export class CheckoutScreen extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({onDoneClicked: this.onDoneClicked.bind(this)})
+  }
+
   render() {
     const navigate = this.props.navigation.navigate;
     if (this.state.selectedItems.length === 0) {
       return (
-        <View>
-          <View style={{margin: 8, marginTop: 16}}>
-            <Button
-              raised
-              backgroundColor="#03A9F4"
-              title="Add your first item"
-              onPress={() =>
-                navigate('NewItem', {
-                  onItemSelected: this.onItemSelected.bind(this)
-                })
-              }
-            />
-          </View>
+        <View style={{marginTop: 16}}>
+          <Button
+            raised
+            containerStyle={{margin: 8}}
+            backgroundColor="#03A9F4"
+            title="Add your first item"
+            onPress={() =>
+              navigate('NewItem', {
+                onItemSelected: this.onItemSelected.bind(this)
+              })
+            }
+          />
         </View>
       )
     }
@@ -40,14 +52,15 @@ export class CheckoutScreen extends React.Component {
       <View>
         <Card
           containerStyle={{paddingBottom: 0}}
-          title={`TOTAL PRICE: $${this.getTotalPrice()}`}
-        >
+          title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
           {
             this.state.selectedItems.map((item, index) => {
               return (
                 <ListItem
                   key={index}
                   roundAvatar
+                  hideChevron={true}
+                  rightTitle={`$${item.price}`}
                   title={item.name}
                   avatar={{uri: item.avatar}}
                 />
@@ -55,9 +68,10 @@ export class CheckoutScreen extends React.Component {
             })
           }
         </Card>
-        <View style={{margin: 8, marginTop: 16}}>
+        <View style={{marginTop: 16}}>
           <Button
             raised
+            containerStyle={{margin: 8}}
             backgroundColor="#03A9F4"
             title="Add more"
             onPress={() =>
@@ -69,6 +83,21 @@ export class CheckoutScreen extends React.Component {
         </View>
       </View>
     );
+  }
+
+  onDoneClicked() {
+    Alert.alert(
+      'Are you sure to checkout?',
+      `The total price is ${this.getTotalPrice()}`,
+      [{
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel'
+      }, {
+        text: 'OK',
+        onPress: () => console.log('OK Pressed')
+      }]
+    )
   }
 
   getTotalPrice() {
