@@ -1,7 +1,7 @@
-import {Button, View} from "react-native";
+import {View, StyleSheet} from "react-native";
 import React from "react";
 import {items} from "../models/ItemData";
-import {Card, ListItem} from "react-native-elements";
+import {Button, Card, ListItem, Text} from "react-native-elements";
 
 export class CheckoutScreen extends React.Component {
 
@@ -17,31 +17,53 @@ export class CheckoutScreen extends React.Component {
   }
 
   render() {
-    const {navigate} = this.props.navigation;
+    const navigate = this.props.navigation.navigate;
+    if (this.state.selectedItems.length === 0) {
+      return (
+        <View>
+          <View style={{margin: 8, marginTop: 16}}>
+            <Button
+              raised
+              backgroundColor="#03A9F4"
+              title="Add your first item"
+              onPress={() =>
+                navigate('NewItem', {
+                  onItemSelected: this.onItemSelected.bind(this)
+                })
+              }
+            />
+          </View>
+        </View>
+      )
+    }
     return (
       <View>
         <Card containerStyle={{padding: 0}}>
           {
-            this.state.selectedItems.map((u, i) => {
+            this.state.selectedItems.map((item, index) => {
               return (
                 <ListItem
-                  key={i}
+                  key={index}
                   roundAvatar
-                  title={u.name}
-                  avatar={{uri: u.avatar}}
+                  title={item.name}
+                  avatar={{uri: item.avatar}}
                 />
               );
             })
           }
         </Card>
-        <Button
-          title="New Checkout"
-          onPress={() =>
-            navigate('NewItem', {
-              onItemSelected: this.onItemSelected.bind(this)
-            })
-          }
-        />
+        <View style={{margin: 8, marginTop: 16}}>
+          <Button
+            raised
+            backgroundColor="#03A9F4"
+            title="Add more"
+            onPress={() =>
+              navigate('NewItem', {
+                onItemSelected: this.onItemSelected.bind(this)
+              })
+            }
+          />
+        </View>
       </View>
     );
   }
