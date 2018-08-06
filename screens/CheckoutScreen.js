@@ -41,7 +41,7 @@ export class CheckoutScreen extends React.Component {
             title="Add your first item"
             onPress={() =>
               navigate('NewItem', {
-                onItemSelected: this.onItemSelected.bind(this)
+                onProductSelected: this.onProductSelected.bind(this)
               })
             }
           />
@@ -76,7 +76,7 @@ export class CheckoutScreen extends React.Component {
             title="Add more"
             onPress={() =>
               navigate('NewItem', {
-                onItemSelected: this.onItemSelected.bind(this)
+                onProductSelected: this.onProductSelected.bind(this)
               })
             }
           />
@@ -106,9 +106,9 @@ export class CheckoutScreen extends React.Component {
     }, 0)
   }
 
-  onItemSelected(selectedItemKey) {
-    console.log(`Adding item with key ${selectedItemKey} into checkout list`);
-    let item = products.find(item => item.key === selectedItemKey);
+  onProductSelected(productKey) {
+    console.log(`Adding product with key ${productKey} into checkout list`);
+    let item = products.find(item => item.key === productKey);
     console.log(item);
     // this.selectedItems.push(item);
     this.setState(prevState => ({

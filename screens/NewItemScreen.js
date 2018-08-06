@@ -1,6 +1,6 @@
 import {Button, FlatList, View} from "react-native";
 import React from "react";
-import {ItemView} from "../views/ItemView";
+import {ProductView} from "../views/ProductView";
 import {products} from "../models/products";
 
 export class NewItemScreen extends React.Component {
@@ -19,22 +19,22 @@ export class NewItemScreen extends React.Component {
       <View>
         <FlatList
           data={products}
-          renderItem={(item) =>
-            <ItemView
-              key={item.key}
-              callback={this.onItemPressed.bind(this)}
-              item={item}/>
+          renderItem={(product) =>
+            <ProductView
+              key={product.key}
+              callback={this.onProductSelected.bind(this)}
+              product={product}/>
           }
         />
       </View>
     );
   }
 
-  onItemPressed(itemKey) {
+  onProductSelected(itemKey) {
     console.log(`Item with key ${itemKey} is selected as new item`);
-    const onItemSelected = this.props.navigation.state.params.onItemSelected;
-    if (onItemSelected) {
-      onItemSelected(itemKey);
+    const onProductSelected = this.props.navigation.state.params.onProductSelected;
+    if (onProductSelected) {
+      onProductSelected(itemKey);
       this.props.navigation.goBack();
     }
   }

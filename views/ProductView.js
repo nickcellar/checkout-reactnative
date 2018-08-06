@@ -1,12 +1,13 @@
 import React from "react";
 import {Button, Card, Icon, Text} from 'react-native-elements'
 
-export class ItemView extends React.Component {
+export class ProductView extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      item: props.item.item,
+      product: props.product.item,
       callback: props.callback
     };
   }
@@ -14,10 +15,10 @@ export class ItemView extends React.Component {
   render() {
     return (
       <Card
-        title={this.state.item.name}
+        title={this.state.product.name}
         image={require('../images/download.jpg')}>
         <Text style={{marginBottom: 10}}>
-          {this.state.item.description}
+          {this.state.product.description}
         </Text>
         <Button
           icon={<Icon name='code' color='#ffffff'/>}
@@ -31,9 +32,11 @@ export class ItemView extends React.Component {
   }
 
   onPress() {
-    console.log(`Item with key ${this.state.item.key} is pressed`);
-    if (this.state.callback) {
-      this.state.callback(this.state.item.key)
+    const key = this.state.product.key;
+    const callback = this.state.callback;
+    console.log(`Product with key ${key} is pressed`);
+    if (callback) {
+      callback(key)
     }
   }
 }
