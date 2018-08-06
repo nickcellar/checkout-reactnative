@@ -1,20 +1,26 @@
-import {Button, View} from "react-native";
+import {Button, FlatList, View} from "react-native";
 import React from "react";
 import {ItemView} from "../views/ItemView";
 
 export class NewItemScreen extends React.Component {
 
-  static items = [{
-    id: "classic",
+  items = [{
+    key: "classic",
     name: "Classic Ad",
+    description: "hihihi",
+    image: "../images/download.jpg",
     price: 269.99
   }, {
-    id: "standout",
+    key: "standout",
     name: "Standout Ad",
+    description: "hihihi",
+    image: "../images/download.jpg",
     price: 322.99
   }, {
-    id: "premium",
+    key: "premium",
     name: "Premium Ad",
+    description: "hihihi",
+    image: "../images/download.jpg",
     price: 394.99
   }];
 
@@ -26,9 +32,14 @@ export class NewItemScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View>
-        <ItemView/>
-        <ItemView/>
-        <ItemView/>
+        <FlatList
+          data={this.items}
+          renderItem={(item) =>
+            <ItemView
+              key={item.key}
+              item={item}/>
+          }
+        />
         <Button
           title="New Checkout"
           onPress={() =>
