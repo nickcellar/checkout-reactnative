@@ -14,14 +14,17 @@ export class CheckoutScreen extends React.Component {
       <Button
         title="New Checkout"
         onPress={() =>
-          navigate('NewItem', {callback: this.callback})
+          navigate('NewItem', {
+            onItemSelected: this.onItemSelected.bind(this)
+          })
         }
       />
     );
   }
 
-  callback(selectedItemKey) {
-    let item = items[selectedItemKey];
-    // console.log(item);
+  onItemSelected(selectedItemKey) {
+    let item = items.find(item => item.key === selectedItemKey);
+    console.log(`Adding item with key ${selectedItemKey} into checkout list`);
+    console.log(item);
   }
 }

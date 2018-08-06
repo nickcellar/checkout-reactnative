@@ -9,8 +9,15 @@ export class NewItemScreen extends React.Component {
     title: 'New Item',
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      onItemSelected: props.onItemSelected
+    }
+  }
+
   render() {
-    const {navigate} = this.props.navigation;
+    const navigate = this.props.navigation.navigate;
     return (
       <View>
         <FlatList
@@ -18,10 +25,19 @@ export class NewItemScreen extends React.Component {
           renderItem={(item) =>
             <ItemView
               key={item.key}
+              callback={this.onItemPressed.bind(this)}
               item={item}/>
           }
         />
       </View>
     );
+  }
+
+  onItemPressed(itemKey) {
+    console.log(`Item with key ${itemKey} is selected as new item`);
+    const onItemSelected = this.props.navigation.state.params.onItemSelected
+    if (onItemSelected) {
+      onItemSelected(itemKey)
+    }
   }
 }
