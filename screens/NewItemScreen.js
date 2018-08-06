@@ -11,9 +11,6 @@ export class NewItemScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      onItemSelected: props.onItemSelected
-    }
   }
 
   render() {
@@ -35,9 +32,10 @@ export class NewItemScreen extends React.Component {
 
   onItemPressed(itemKey) {
     console.log(`Item with key ${itemKey} is selected as new item`);
-    const onItemSelected = this.props.navigation.state.params.onItemSelected
+    const onItemSelected = this.props.navigation.state.params.onItemSelected;
     if (onItemSelected) {
-      onItemSelected(itemKey)
+      onItemSelected(itemKey);
+      this.props.navigation.goBack();
     }
   }
 }
