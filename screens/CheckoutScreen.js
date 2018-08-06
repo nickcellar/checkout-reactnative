@@ -38,7 +38,10 @@ export class CheckoutScreen extends React.Component {
     }
     return (
       <View>
-        <Card containerStyle={{padding: 0}}>
+        <Card
+          containerStyle={{paddingBottom: 0}}
+          title={`TOTAL PRICE: $${this.getTotalPrice()}`}
+        >
           {
             this.state.selectedItems.map((item, index) => {
               return (
@@ -66,6 +69,12 @@ export class CheckoutScreen extends React.Component {
         </View>
       </View>
     );
+  }
+
+  getTotalPrice() {
+    return this.state.selectedItems.reduce((acc, item) => {
+      return acc + item.price
+    }, 0)
   }
 
   onItemSelected(selectedItemKey) {
