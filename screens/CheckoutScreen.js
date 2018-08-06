@@ -1,6 +1,6 @@
 import {View, Alert} from "react-native";
 import React from "react";
-import {items} from "../models/ItemData";
+import {products} from "../models/products";
 import {Button, Card, Icon, ListItem} from "react-native-elements";
 
 export class CheckoutScreen extends React.Component {
@@ -108,7 +108,7 @@ export class CheckoutScreen extends React.Component {
 
   onItemSelected(selectedItemKey) {
     console.log(`Adding item with key ${selectedItemKey} into checkout list`);
-    let item = items.find(item => item.key === selectedItemKey);
+    let item = products.find(item => item.key === selectedItemKey);
     console.log(item);
     // this.selectedItems.push(item);
     this.setState(prevState => ({
