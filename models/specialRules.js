@@ -66,7 +66,7 @@ export const specialRules = {
     },
     discount: (items) => {
       return items.filter(item => item.key === "premium").length * (products.find(product => product.key === "premium").price - 389.99)
-    },
+    }, 
     freeItem: null
   }]
 };

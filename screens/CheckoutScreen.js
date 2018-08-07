@@ -128,8 +128,11 @@ export class CheckoutScreen extends React.Component {
             key={index}
             roundAvatar
             hideChevron={true}
-            title={rule.message}
+            title="Discount"
+            titleStyle={{width: 240}}
             avatar={{uri: rule.avatar}}
+            subtitle={rule.message}
+            subtitleStyle={{width: 240}}
             rightTitle={`-$${discount}`}
           />
         );
@@ -140,6 +143,7 @@ export class CheckoutScreen extends React.Component {
             roundAvatar
             hideChevron={true}
             title={freeItem.message}
+            subtitle={rule.message}
             avatar={{uri: rule.avatar}}
           />
         );

@@ -25,7 +25,7 @@ export class ProductView extends React.Component {
           // fontFamily='Lato'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           onPress={this.onPress.bind(this)}
-          title='VIEW NOW'/>
+          title='ADD NOW'/>
       </Card>
     )
   }
