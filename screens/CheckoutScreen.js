@@ -27,7 +27,9 @@ export class CheckoutScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({onDoneClicked: this.onDoneClicked.bind(this)})
+    this.props.navigation.setParams({
+      onDoneClicked: this.onDoneClicked.bind(this)
+    })
   }
 
   render() {
@@ -106,11 +108,12 @@ export class CheckoutScreen extends React.Component {
 
   getPassedRules() {
     const customerKey = this.props.navigation.state.params.customerKey;
+    // console.log("customerKey", customerKey);
     const rules = specialRules[customerKey]
       .filter(rule => {
         return rule.criteria(this.state.selectedItems)
       });
-    console.log(rules);
+    // console.log(rules);
     return rules
   }
 
@@ -118,7 +121,7 @@ export class CheckoutScreen extends React.Component {
     return this.getPassedRules().map((rule, index) => {
       const discount = rule.discount(this.state.selectedItems);
       const freeItem = rule.freeItem;
-      console.log(discount);
+      // console.log(discount);
       if (discount) {
         return (
           <ListItem
