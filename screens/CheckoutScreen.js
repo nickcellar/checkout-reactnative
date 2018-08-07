@@ -105,7 +105,8 @@ export class CheckoutScreen extends React.Component {
   }
 
   getPassedRules() {
-    const rules = specialRules['unilever']
+    const customerKey = this.props.navigation.state.params.customerKey;
+    const rules = specialRules[customerKey]
       .filter(rule => {
         return rule.criteria(this.state.selectedItems)
       });

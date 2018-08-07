@@ -1,13 +1,13 @@
 export const privilegedCustomers = [{
   key: 'unilever',
-  name: 'UNILEVER'
+  name: 'Unilever'
 }, {
   key: 'apple',
-  name: 'APPLE',
+  name: 'Apple',
 }, {
   key: 'nike',
-  name: 'NIKE',
+  name: 'Nike',
 }, {
   key: 'ford',
-  name: 'FORD',
+  name: 'Ford',
 }];
