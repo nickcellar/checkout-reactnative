@@ -55,7 +55,7 @@ export class CheckoutScreen extends React.Component {
           containerStyle={{paddingBottom: 0}}
           title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
           {this.getSelectedItemViews()}
-          {this.getPassedRuleViews()}
+          {this.getPassedRuleDiscountViews()}
         </Card>
         <View style={{marginTop: 16}}>
           <Button
@@ -105,7 +105,7 @@ export class CheckoutScreen extends React.Component {
   }
 
   getPassedRules() {
-    const rules = specialRules['apple']
+    const rules = specialRules['unilever']
       .filter(rule => {
         return rule.criteria(this.state.selectedItems)
       });
@@ -113,20 +113,35 @@ export class CheckoutScreen extends React.Component {
     return rules
   }
 
-  getPassedRuleViews() {
+  getPassedRuleDiscountViews() {
     return this.getPassedRules().map((rule, index) => {
       const discount = rule.discount(this.state.selectedItems);
+      const freeItem = rule.freeItem;
       console.log(discount);
-      return (
-        <ListItem
-          key={index}
-          roundAvatar
-          hideChevron={true}
-          title={rule.message}
-          avatar={{uri: rule.avatar}}
-          rightTitle={`-$${discount}`}
-        />
-      );
+      if (discount) {
+        return (
+          <ListItem
+            key={index}
+            roundAvatar
+            hideChevron={true}
+            title={rule.message}
+            avatar={{uri: rule.avatar}}
+            rightTitle={`-$${discount}`}
+          />
+        );
+      } else if (freeItem) {
+        return (
+          <ListItem
+            key={index}
+            roundAvatar
+            hideChevron={true}
+            title={freeItem.message}
+            avatar={{uri: rule.avatar}}
+          />
+        );
+      } else {
+        return null;
+      }
     })
   }
 

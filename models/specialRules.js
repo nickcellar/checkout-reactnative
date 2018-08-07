@@ -9,11 +9,12 @@ export const specialRules = {
     discount: () => {
       return null
     },
-    freeItems: [{
+    freeItem: {
       type: 'product',
       key: 'classic',
+      message: 'Free classic ad',
       quantity: 1
-    }]
+    }
   }],
   'apple': [{
     message: "Gets a discount on Standout Ads where the price drops to $299.99 per ad",
@@ -23,7 +24,7 @@ export const specialRules = {
     discount: (items) => {
       return items.filter(item => item.key === "standout").length * (products.find(product => product.key === "standout").price - 299.99)
     },
-    freeItems: null
+    freeItem: null
   }],
   'nike': [{
     message: "Gets a discount on Premium Ads where 4 or more are purchased. The price drops to $379.99 per ad",
@@ -33,7 +34,7 @@ export const specialRules = {
     discount: (items) => {
       return items.filter(item => item.key === "premium").length * (products.find(product => product.key === "premium").price - 379.99)
     },
-    freeItems: null
+    freeItem: null
   }],
   'ford': [{
     message: "Gets a 5 for 4 deal on Classic Ads",
@@ -43,11 +44,12 @@ export const specialRules = {
     discount: (items) => {
       return null
     },
-    freeItems: [{
+    freeItem: {
       type: 'product',
       key: 'classic',
+      message: 'Free classic ad',
       quantity: 1
-    }]
+    }
   }, {
     message: "Gets a discount on Standout Ads where the price drops to $309.99 per ad",
     criteria: (items) => {
@@ -56,7 +58,7 @@ export const specialRules = {
     discount: (items) => {
       return items.filter(item => item.key === "standout").length * (products.find(product => product.key === "premium").price - 309.99)
     },
-    freeItems: null
+    freeItem: null
   }, {
     message: "Gets a discount on Premium Ads when 3 or more are purchased. The price drops to $389.99 per ad",
     criteria: (items) => {
@@ -65,6 +67,6 @@ export const specialRules = {
     discount: (items) => {
       return items.filter(item => item.key === "premium").length * (products.find(product => product.key === "premium").price - 389.99)
     },
-    freeItems: null
+    freeItem: null
   }]
 };
