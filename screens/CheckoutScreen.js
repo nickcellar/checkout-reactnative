@@ -2,6 +2,7 @@ import {View, Alert} from "react-native";
 import React from "react";
 import {products} from "../models/products";
 import {Button, Card, Icon, ListItem} from "react-native-elements";
+import {specialRules} from "../models/specialRules";
 
 export class CheckoutScreen extends React.Component {
 
@@ -53,20 +54,8 @@ export class CheckoutScreen extends React.Component {
         <Card
           containerStyle={{paddingBottom: 0}}
           title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
-          {
-            this.state.selectedItems.map((item, index) => {
-              return (
-                <ListItem
-                  key={index}
-                  roundAvatar
-                  hideChevron={true}
-                  rightTitle={`$${item.price}`}
-                  title={item.name}
-                  avatar={{uri: item.avatar}}
-                />
-              );
-            })
-          }
+          {this.getSelectedItemViews()}
+          {this.getPassedRuleViews()}
         </Card>
         <View style={{marginTop: 16}}>
           <Button
@@ -100,6 +89,46 @@ export class CheckoutScreen extends React.Component {
     )
   }
 
+  getSelectedItemViews() {
+    return this.state.selectedItems.map((item, index) => {
+      return (
+        <ListItem
+          key={index}
+          roundAvatar
+          hideChevron={true}
+          rightTitle={`$${item.price}`}
+          title={item.name}
+          avatar={{uri: item.avatar}}
+        />
+      );
+    })
+  }
+
+  getPassedRules() {
+    const rules = specialRules['unilever']
+      .filter(rule => {
+        return rule.criteria(this.state.selectedItems)
+      });
+    // console.log(rules);
+    return rules
+  }
+
+  getPassedRuleViews() {
+    return this.getPassedRules().map((rule, index) => {
+      const discount = rule.discount(this.state.selectedItems);
+      console.log(discount);
+      return (
+        <ListItem
+          key={index}
+          roundAvatar
+          hideChevron={true}
+          title={rule.message}
+          avatar={{uri: rule.avatar}}
+        />
+      );
+    })
+  }
+
   getTotalPrice() {
     return this.state.selectedItems.reduce((acc, item) => {
       return acc + item.price
@@ -109,7 +138,7 @@ export class CheckoutScreen extends React.Component {
   onProductSelected(productKey) {
     console.log(`Adding product with key ${productKey} into checkout list`);
     let item = products.find(item => item.key === productKey);
-    console.log(item);
+    // console.log(item);
     // this.selectedItems.push(item);
     this.setState(prevState => ({
       selectedItems: [...prevState.selectedItems, item]
