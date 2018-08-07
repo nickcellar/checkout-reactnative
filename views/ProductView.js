@@ -5,7 +5,6 @@ export class ProductView extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       product: props.product.item,
       callback: props.callback

@@ -105,11 +105,11 @@ export class CheckoutScreen extends React.Component {
   }
 
   getPassedRules() {
-    const rules = specialRules['unilever']
+    const rules = specialRules['apple']
       .filter(rule => {
         return rule.criteria(this.state.selectedItems)
       });
-    // console.log(rules);
+    console.log(rules);
     return rules
   }
 
@@ -124,6 +124,7 @@ export class CheckoutScreen extends React.Component {
           hideChevron={true}
           title={rule.message}
           avatar={{uri: rule.avatar}}
+          rightTitle={`-$${discount}`}
         />
       );
     })
@@ -132,6 +133,8 @@ export class CheckoutScreen extends React.Component {
   getTotalPrice() {
     return this.state.selectedItems.reduce((acc, item) => {
       return acc + item.price
+    }, 0) - this.getPassedRules().reduce((acc, rule) => {
+      return acc + rule.discount(this.state.selectedItems);
     }, 0)
   }
 

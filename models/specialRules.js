@@ -21,7 +21,7 @@ export const specialRules = {
       return true
     },
     discount: (items) => {
-      return items.filter(item => item.key === "standout").length
+      return items.filter(item => item.key === "standout").length * (products.find(product => product.key === "standout").price - 299.99)
     },
     freeItems: null
   }],
