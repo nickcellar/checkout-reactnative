@@ -1,20 +1,15 @@
-import {Button, FlatList, View} from "react-native";
 import React from "react";
-import {ProductItem} from "../components/ProductItem";
+import {FlatList, View} from "react-native";
+import {ProductItem} from "./ProductItem";
 import {products} from "../models/products";
 
-export class NewItemScreen extends React.Component {
+export class ProductPicker extends React.Component {
 
   static navigationOptions = {
     title: 'New Item',
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const navigate = this.props.navigation.navigate;
     return (
       <View>
         <FlatList
