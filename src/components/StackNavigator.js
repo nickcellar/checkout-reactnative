@@ -1,10 +1,10 @@
 import {createStackNavigator} from "react-navigation";
-import {HomeScreen} from "../screens/HomeScreen";
+import {UserPicker} from "./UserPicker";
 import {Cart} from "./Cart";
 import {ProductPicker} from "./ProductPicker";
 
 export const StackNavigator = createStackNavigator({
-  Home: {screen: HomeScreen},
+  UserPicker: {screen: UserPicker},
   Cart: {screen: Cart},
   NewItem: {screen: ProductPicker},
 });

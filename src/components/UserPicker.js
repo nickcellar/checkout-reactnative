@@ -3,7 +3,7 @@ import React from "react";
 import {privilegedCustomers} from "../models/privilegedCustomers";
 import {Button, Text} from "react-native-elements";
 
-export class HomeScreen extends React.Component {
+export class UserPicker extends React.Component {
 
   static navigationOptions = {
     title: 'Welcome',
