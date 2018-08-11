@@ -24,15 +24,6 @@ export class Cart extends React.Component {
     ),
   });
 
-  constructor(props) {
-    super(props);
-    console.log("In the cart now");
-    console.log("> Current customer", props.currentCustomer);
-    this.state = {
-      selectedItems: []
-    }
-  }
-
   componentDidMount() {
     this.props.navigation.setParams({
       onDoneClicked: this.onDoneClicked.bind(this)
@@ -40,15 +31,14 @@ export class Cart extends React.Component {
   }
 
   render() {
-    const navigate = this.props.navigation.navigate;
-    if (this.state.selectedItems.length === 0) {
+    if (this.props.cart.productKeys.length === 0) {
       return this.getAddMoreItemView("Add your first item")
     }
     return (
       <View>
         <Card
           containerStyle={{paddingBottom: 0}}
-          title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
+          title={`TOTAL PRICE: $${this.props.cart.totalPrice}`}>
           {this.props.cart.products.map((product, index) => (
             <ProductListItem key={`product-${index}`} product={product}/>
           ))}
@@ -72,7 +62,7 @@ export class Cart extends React.Component {
           raised
           containerStyle={{margin: 8}}
           backgroundColor="#03A9F4"
-          title="Add more"
+          title={message}
           onPress={() =>
             navigate('NewItem', {onProductSelected: this.onProductSelected.bind(this)})
           }
@@ -84,7 +74,7 @@ export class Cart extends React.Component {
   onDoneClicked() {
     Alert.alert(
       'Are you sure to checkout?',
-      `The total price is ${this.getTotalPrice()}`,
+      `The total price is ${this.props.cart.totalPrice}`,
       [{
         text: 'Cancel',
         onPress: () => console.log('Cancel Pressed'),
@@ -96,39 +86,13 @@ export class Cart extends React.Component {
     )
   }
 
-  getPassedRules() {
-    const customerKey = this.props.navigation.state.params.customerKey;
-    // console.log("customerKey", customerKey);
-    const rules = specialRules[customerKey]
-      .filter(rule => {
-        return rule.criteria(this.state.selectedItems)
-      });
-    // console.log(rules);
-    return rules
-  }
-
-  getTotalPrice() {
-    return this.state.selectedItems.reduce((acc, item) => {
-      return acc + item.price
-    }, 0) - this.getPassedRules().reduce((acc, rule) => {
-      return acc + rule.discount(this.state.selectedItems);
-    }, 0)
-  }
-
   onProductSelected(productKey) {
     console.log(`Adding product with key ${productKey} into checkout list`);
-    let item = products.find(item => item.key === productKey);
-    // console.log(item);
-    // this.selectedItems.push(item);
-    this.setState(prevState => ({
-      selectedItems: [...prevState.selectedItems, item]
-    }))
     this.props.addProduct(this.props.currentCustomerKey, productKey);
   }
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     currentCustomerKey: state.session.currentCustomer,
     cart: state.cart

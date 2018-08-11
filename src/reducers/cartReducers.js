@@ -40,6 +40,9 @@ export const cartReducers = (state = {productKeys: []}, action) => {
             item: rule.freeItem
           }
         });
+      newState.totalPrice =
+        newState.products.reduce((acc, product) => acc + product.price, 0) -
+        newState.discounts.reduce((acc, discount) => acc + discount.amount, 0);
       break;
 
     case ACTION_REMOVE_PRODUCT:
