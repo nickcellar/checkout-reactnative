@@ -17,11 +17,27 @@ export const cartReducers = (state = {productKeys: []}, action) => {
       console.log(`Adding product productKey:${action.productKey} customerKey:${action.customerKey}`);
       // console.debug("> action", action);
       newState = {};
-      newState.productKeys = [...state.productKeys, action.productKey];
-      newState.products = products
-        .filter(product => newState.productKeys.includes(product.key));
+      newState.productKeys = state.productKeys
+        .concat(action.productKey);
+      newState.products = newState.productKeys
+        .map(key => products.find(product => product.key === key));
       newState.matchedRules = rules
         .filter(rule => rule.customerKey === action.customerKey && rule.criteria(newState.productKeys));
+      newState.discounts = newState.matchedRules
+        .map(rule => {
+          return {
+            ruleKey: rule.key,
+            message: rule.message,
+            discount: rule.discount(newState.productKeys)
+          }
+        });
+      newState.freeItems = newState.matchedRules
+        .map(rule => {
+          return {
+            ruleKey: rule.key,
+            item: rule.freeItem
+          }
+        });
       break;
 
     case ACTION_REMOVE_PRODUCT:
@@ -36,6 +52,6 @@ export const cartReducers = (state = {productKeys: []}, action) => {
       break;
   }
 
-  // console.debug("> newState", newState);
+  console.debug("> newState", newState);
   return newState;
 };

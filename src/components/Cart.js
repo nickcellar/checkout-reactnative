@@ -103,38 +103,38 @@ export class Cart extends React.Component {
   }
 
   getPassedRuleDiscountViews() {
-    return this.getPassedRules().map((rule, index) => {
-      const discount = rule.discount(this.state.selectedItems);
-      const freeItem = rule.freeItem;
-      // console.log(discount);
-      if (discount) {
-        return (
-          <ListItem
-            key={index}
-            roundAvatar
-            hideChevron={true}
-            title="Discount"
-            titleStyle={{width: 240}}
-            avatar={{uri: rule.avatar}}
-            subtitle={rule.message}
-            subtitleStyle={{width: 240}}
-            rightTitle={`-$${discount}`}
-          />
-        );
-      } else if (freeItem) {
-        return (
-          <ListItem
-            key={index}
-            roundAvatar
-            hideChevron={true}
-            title={freeItem.message}
-            subtitle={rule.message}
-            avatar={{uri: rule.avatar}}
-          />
-        );
-      } else {
+    return !this.props.matchedRules ? null : this.props.matchedRules.map((rule, index) => {
+      // const discount = rule.discount(this.state.selectedItems);
+      // const freeItem = rule.freeItem;
+      // // console.log(discount);
+      // if (discount) {
+      //   return (
+      //     <ListItem
+      //       key={index}
+      //       roundAvatar
+      //       hideChevron={true}
+      //       title="Discount"
+      //       titleStyle={{width: 240}}
+      //       avatar={{uri: rule.avatar}}
+      //       subtitle={rule.message}
+      //       subtitleStyle={{width: 240}}
+      //       rightTitle={`-$${discount}`}
+      //     />
+      //   );
+      // } else if (freeItem) {
+      //   return (
+      //     <ListItem
+      //       key={index}
+      //       roundAvatar
+      //       hideChevron={true}
+      //       title={freeItem.message}
+      //       subtitle={rule.message}
+      //       avatar={{uri: rule.avatar}}
+      //     />
+      //   );
+      // } else {
         return null;
-      }
+      // }
     })
   }
 
