@@ -5,32 +5,10 @@ import {connect} from "react-redux";
 import {ProductListItem} from "./ProductListItem";
 import {DiscountListItem} from "./DiscountListItem";
 import {FreeItemListItem} from "./FreeItemListItem";
-import {AddMoreButton} from "./AddMoreButton";
-import {CheckoutAlert} from "./CheckoutAlert";
-import {CheckoutIcon} from "./CheckoutIcon";
-import {PAGE_PRODUCT_PICKER} from "./StackNavigator";
-import {addRecordAction} from "../actions/recordActions";
-import {clearCartAction} from "../actions/cartActions";
+import {AddMoreButton} from "../AddMoreButton";
+import {PAGE_PRODUCT_PICKER} from "../StackNavigator";
 
 export class Cart extends React.Component {
-
-  static navigationOptions = ({navigation}) => {
-    return ({
-      title: 'Cart',
-      headerRight: (<CheckoutIcon onPress={() => navigation.state.params.checkout()}/>),
-    })
-  };
-
-  componentDidMount() {
-    this.props.navigation.setParams({
-      checkout: () => {
-        CheckoutAlert(this.props.cart.totalPrice, () => {
-          this.props.checkout(this.props.cart);
-          this.props.navigation.goBack();
-        })
-      }
-    });
-  }
 
   render() {
     return (
@@ -66,14 +44,6 @@ const mapStateToProps = state => {
   })
 };
 
-const mapDispatchToProps = dispatch => ({
-  checkout: (cart) => {
-    dispatch(addRecordAction(cart));
-    dispatch(clearCartAction());
-  }
-});
-
 export const CartContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Cart);
