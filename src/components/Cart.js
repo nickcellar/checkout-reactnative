@@ -8,6 +8,7 @@ import {addProductAction} from "../actions/cartActions";
 import {ProductListItem} from "./ProductListItem";
 import {DiscountListItem} from "./DiscountListItem";
 import {FreeItemListItem} from "./FreeItemListItem";
+import {AddMoreButton} from "./AddMoreButton";
 
 export class Cart extends React.Component {
 
@@ -32,7 +33,9 @@ export class Cart extends React.Component {
 
   render() {
     if (this.props.cart.productKeys.length === 0) {
-      return this.getAddMoreItemView("Add your first item")
+      return (
+        <AddMoreButton message="Add your first item" navigate={this.props.navigation.navigate}/>
+      )
     }
     return (
       <View>
@@ -49,26 +52,9 @@ export class Cart extends React.Component {
             <FreeItemListItem key={`freeItem-${index}`} freeItem={freeItem}/>
           ))}
         </Card>
-        {this.getAddMoreItemView("Add more")}
+        <AddMoreButton message="Add more" navigate={this.props.navigation.navigate}/>
       </View>
     );
-  }
-
-  getAddMoreItemView(message) {
-    const navigate = this.props.navigation.navigate;
-    return (
-      <View style={{marginTop: 16}}>
-        <Button
-          raised
-          containerStyle={{margin: 8}}
-          backgroundColor="#03A9F4"
-          title={message}
-          onPress={() =>
-            navigate('NewItem', {onProductSelected: this.onProductSelected.bind(this)})
-          }
-        />
-      </View>
-    )
   }
 
   onDoneClicked() {
@@ -84,11 +70,6 @@ export class Cart extends React.Component {
         onPress: () => console.log('OK Pressed')
       }]
     )
-  }
-
-  onProductSelected(productKey) {
-    console.log(`Adding product with key ${productKey} into checkout list`);
-    this.props.addProduct(this.props.currentCustomerKey, productKey);
   }
 }
 
