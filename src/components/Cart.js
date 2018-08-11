@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {CustomerPicker} from "./CustomerPicker";
 import {addProductAction} from "../actions/cartActions";
 import {ProductListItem} from "./ProductListItem";
+import {DiscountListItem} from "./DiscountListItem";
 
 export class Cart extends React.Component {
 
@@ -50,9 +51,14 @@ export class Cart extends React.Component {
           containerStyle={{paddingBottom: 0}}
           title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
           {this.props.cart.products.map((product, index) => (
-            <ProductListItem index={index} product={product}/>
+            <ProductListItem key={`product-${index}`} product={product}/>
           ))}
-          {this.getPassedRuleDiscountViews()}
+          {this.props.cart.discounts.map((discount, index) => (
+            <DiscountListItem key={`discount-${index}`} discount={discount}/>
+          ))}
+          {this.props.cart.freeItems.map((freeItem, index) => (
+            <DiscountListItem key={`freeItem-${index}`} freeItem={freeItem}/>
+          ))}
         </Card>
         {this.getAddMoreItemView("Add more")}
       </View>
@@ -102,42 +108,6 @@ export class Cart extends React.Component {
     return rules
   }
 
-  getPassedRuleDiscountViews() {
-    return !this.props.matchedRules ? null : this.props.matchedRules.map((rule, index) => {
-      // const discount = rule.discount(this.state.selectedItems);
-      // const freeItem = rule.freeItem;
-      // // console.log(discount);
-      // if (discount) {
-      //   return (
-      //     <ListItem
-      //       key={index}
-      //       roundAvatar
-      //       hideChevron={true}
-      //       title="Discount"
-      //       titleStyle={{width: 240}}
-      //       avatar={{uri: rule.avatar}}
-      //       subtitle={rule.message}
-      //       subtitleStyle={{width: 240}}
-      //       rightTitle={`-$${discount}`}
-      //     />
-      //   );
-      // } else if (freeItem) {
-      //   return (
-      //     <ListItem
-      //       key={index}
-      //       roundAvatar
-      //       hideChevron={true}
-      //       title={freeItem.message}
-      //       subtitle={rule.message}
-      //       avatar={{uri: rule.avatar}}
-      //     />
-      //   );
-      // } else {
-        return null;
-      // }
-    })
-  }
-
   getTotalPrice() {
     return this.state.selectedItems.reduce((acc, item) => {
       return acc + item.price
@@ -158,9 +128,8 @@ export class Cart extends React.Component {
   }
 }
 
-
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return ({
     currentCustomerKey: state.session.currentCustomer,
     cart: state.cart

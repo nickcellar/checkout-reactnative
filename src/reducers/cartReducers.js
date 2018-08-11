@@ -28,13 +28,14 @@ export const cartReducers = (state = {productKeys: []}, action) => {
           return {
             ruleKey: rule.key,
             message: rule.message,
-            discount: rule.discount(newState.productKeys)
+            amount: rule.discount(newState.productKeys)
           }
         });
       newState.freeItems = newState.matchedRules
         .map(rule => {
           return {
             ruleKey: rule.key,
+            message: rule.message,
             item: rule.freeItem
           }
         });
@@ -52,6 +53,6 @@ export const cartReducers = (state = {productKeys: []}, action) => {
       break;
   }
 
-  console.debug("> newState", newState);
+  // console.debug("> newState", newState);
   return newState;
 };
