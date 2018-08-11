@@ -1,8 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {clearCartAction} from "../../actions/cartActions";
-import {addRecordAction} from "../../actions/recordActions";
-import {CheckoutAlert} from "./CheckoutAlert";
 import {CartContainer} from "./Cart";
 import {CheckoutIconContainer} from "./CheckoutIcon";
 

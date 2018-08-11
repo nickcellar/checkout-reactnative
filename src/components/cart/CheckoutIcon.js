@@ -1,6 +1,5 @@
 import React from "react";
 import {Icon} from "react-native-elements";
-import {CartPage} from "./CartPage";
 import {clearCartAction} from "../../actions/cartActions";
 import {addRecordAction} from "../../actions/recordActions";
 import {connect} from "react-redux";
