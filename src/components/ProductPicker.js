@@ -1,7 +1,6 @@
 import React from "react";
 import {FlatList, View} from "react-native";
 import {ProductCard} from "./ProductCard";
-import {products} from "../models/products";
 import {connect} from "react-redux";
 import {addProductAction} from "../actions/cartActions";
 
@@ -15,7 +14,7 @@ export class ProductPicker extends React.Component {
     return (
       <View>
         <FlatList
-          data={products}
+          data={this.props.products}
           renderItem={(product) =>
             <ProductCard
               key={product.key}
@@ -37,6 +36,7 @@ export class ProductPicker extends React.Component {
 const mapStateToProps = state => {
   return ({
     currentCustomerKey: state.session.currentCustomer,
+    products: state.products,
   })
 };
 
