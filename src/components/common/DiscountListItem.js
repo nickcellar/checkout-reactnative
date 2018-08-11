@@ -6,6 +6,7 @@ export class DiscountListItem extends React.Component {
   render() {
     return (
       <ListItem
+        containerStyle={{borderBottomWidth: 0}}
         roundAvatar
         hideChevron={true}
         title="Discount"

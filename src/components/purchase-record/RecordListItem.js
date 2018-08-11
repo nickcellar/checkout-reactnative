@@ -9,7 +9,7 @@ export class RecordListItem extends React.Component {
   render() {
     return (
       <Card
-        containerStyle={{paddingBottom: 0}}
+        containerStyle={{paddingBottom: 2}}
         title={`TOTAL PRICE: $${this.props.cart.totalPrice}`}>
         {this.props.cart.products.map((product, index) => (
           <ProductListItem key={`product-${index}`} product={product}/>
