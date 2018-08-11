@@ -1,6 +1,9 @@
 import {ACTION_ADD_PRODUCT, ACTION_REMOVE_PRODUCT} from "../actions/cartActions";
+import {specialRules} from "../models/specialRules";
+import {rules} from "../models/rules";
+import {products} from "../models/products";
 
-export const cartReducers = (state = [], action) => {
+export const cartReducers = (state = {productKeys: []}, action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);
@@ -11,10 +14,14 @@ export const cartReducers = (state = [], action) => {
   switch (action.type) {
 
     case ACTION_ADD_PRODUCT:
-      console.log("Adding product");
-      newState = [...state, {
-        productKey: action.productKey,
-      }];
+      console.log("Adding product", action.productKey);
+      console.debug("> action", action);
+      newState = {};
+      newState.productKeys = [...state.productKeys, action.productKey];
+      newState.products = products
+        .filter(product => newState.productKeys.includes(product.key));
+      newState.matchedRules = rules
+        .filter(rule => rule.customerKey === action.customerKey && rule.criteria(newState.productKeys));
       break;
 
     case ACTION_REMOVE_PRODUCT:
@@ -29,6 +36,6 @@ export const cartReducers = (state = [], action) => {
       break;
   }
 
-  // console.debug("> newState", newState);
+  console.debug("> newState", newState);
   return newState;
 };

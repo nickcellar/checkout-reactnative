@@ -3,6 +3,10 @@ import React from "react";
 import {products} from "../models/products";
 import {Button, Card, Icon, ListItem} from "react-native-elements";
 import {specialRules} from "../models/specialRules";
+import {setCurrentCustomerAction} from "../actions/sessionActions";
+import {connect} from "react-redux";
+import {CustomerPicker} from "./CustomerPicker";
+import {addProductAction} from "../actions/cartActions";
 
 export class Cart extends React.Component {
 
@@ -21,6 +25,9 @@ export class Cart extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log("In the cart now");
+    console.log("> Current customer", props.currentCustomer);
+
     this.state = {
       selectedItems: []
     }
@@ -169,5 +176,24 @@ export class Cart extends React.Component {
     this.setState(prevState => ({
       selectedItems: [...prevState.selectedItems, item]
     }))
+    this.props.addProduct(this.props.currentCustomerKey, productKey);
   }
 }
+
+
+const mapStateToProps = state => {
+  // console.log(state);
+  return ({
+    currentCustomerKey: state.session.currentCustomer,
+    cart: state.cart
+  })
+};
+
+const mapDispatchToProps = dispatch => ({
+  addProduct: (customerKey, productKey) => dispatch(addProductAction(customerKey, productKey))
+});
+
+export const CartContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

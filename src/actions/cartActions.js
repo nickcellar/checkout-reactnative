@@ -3,9 +3,10 @@ export const ACTION_REMOVE_PRODUCT = 'ACTION_REMOVE_PRODUCT';
 
 let nextTodoId = 0;
 
-export const addProductAction = productKey => ({
+export const addProductAction = (customerKey, productKey) => ({
   type: ACTION_ADD_PRODUCT,
-  productKey
+  customerKey: customerKey,
+  productKey: productKey
 });
 
 export const removeProductAction = productKey => ({

@@ -1,7 +1,6 @@
-import {customers} from "../models/customers";
-import {ACTION_SET_CURRENT_CUSTOMER} from "../actions/customerActions";
+import {ACTION_SET_CURRENT_CUSTOMER} from "../actions/sessionActions";
 
-export const customerReducers = (state = {}, action) => {
+export const sessionReducers = (state = {}, action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);
