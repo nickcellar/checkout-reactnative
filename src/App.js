@@ -4,7 +4,7 @@ import {StyleSheet, View} from 'react-native';
 import {StackNavigator} from "./components/StackNavigator";
 import {createStore} from "redux";
 import {reducers} from "./reducers";
-import {RecordList} from "./components/record/RecordList";
+import {RecordList} from "./components/purchase-record/RecordList";
 
 const store = createStore(reducers);
 

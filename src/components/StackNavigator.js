@@ -1,6 +1,6 @@
 import {createStackNavigator} from "react-navigation";
 import {ProductPickerContainer} from "./ProductPicker";
-import {RecordPageContainer} from "./record/RecordPage";
+import {RecordPageContainer} from "./purchase-record/PurchaseRecordPage";
 import {CustomerPageContainer} from "./customer/CustomerPage";
 import {CartPageContainer} from "./cart/CartPage";
 

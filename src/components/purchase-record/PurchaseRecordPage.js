@@ -5,7 +5,7 @@ import {PAGE_CART, PAGE_CUSTOMER_PICKER, PAGE_PRODUCT_PICKER} from "../StackNavi
 import {AddMoreButton} from "../AddMoreButton";
 import {View} from "react-native";
 
-export class RecordPage extends React.Component {
+export class PurchaseRecordPage extends React.Component {
 
   static navigationOptions = {
     title: 'Your purchase history',
@@ -39,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
 export const RecordPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(RecordPage);
+)(PurchaseRecordPage);
