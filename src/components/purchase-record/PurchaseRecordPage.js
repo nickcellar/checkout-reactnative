@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export const RecordPageContainer = connect(
+export const PurchaseRecordPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(PurchaseRecordPage);
