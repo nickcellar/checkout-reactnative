@@ -11,7 +11,7 @@ export class RecordList extends React.Component {
       <View>
         {this.props.records.length > 0 ?
           this.props.records.map((record, index) => (
-            <RecordListItem cart={record.cart}/>
+            <RecordListItem key={index} cart={record.cart}/>
           )) : (
             <Text style={{padding: 16}}>You did not have any purchase history yet</Text>
           )}

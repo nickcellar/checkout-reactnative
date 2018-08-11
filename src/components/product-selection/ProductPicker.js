@@ -2,7 +2,7 @@ import React from "react";
 import {FlatList, View} from "react-native";
 import {ProductCard} from "./ProductCard";
 import {connect} from "react-redux";
-import {addProductAction} from "../actions/cartActions";
+import {addProductAction} from "../../actions/cartActions";
 
 export class ProductPicker extends React.Component {
 

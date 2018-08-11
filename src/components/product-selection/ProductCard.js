@@ -7,7 +7,7 @@ export class ProductCard extends React.Component {
     return (
       <Card
         title={this.props.product.item.name}
-        image={require('../images/download.jpg')}>
+        image={require('../../images/download.jpg')}>
         <Text style={{marginBottom: 10}}>
           {this.props.product.item.description}
         </Text>
