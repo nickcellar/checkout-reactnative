@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {RecordListContainer} from "./RecordList";
 import {PAGE_CUSTOMER_PICKER} from "../StackNavigator";
 import {AddMoreButton} from "../common/AddMoreButton";
-import {View} from "react-native";
+import {ScrollView, View} from "react-native";
 
 export class PurchaseRecordPage extends React.Component {
 
@@ -13,12 +13,12 @@ export class PurchaseRecordPage extends React.Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         <RecordListContainer/>
         <AddMoreButton
           message="Start a new checkout"
           onPress={() => this.props.navigation.navigate(PAGE_CUSTOMER_PICKER)}/>
-      </View>
+      </ScrollView>
     );
   }
 }

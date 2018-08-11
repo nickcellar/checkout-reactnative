@@ -1,4 +1,4 @@
-import {View} from "react-native";
+import {ScrollView, View} from "react-native";
 import React from "react";
 import {Card, Text} from "react-native-elements";
 import {connect} from "react-redux";
@@ -12,7 +12,7 @@ export class Cart extends React.Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text style={{padding: 16}}>Customer: {this.props.session.customer.name}</Text>
         {this.props.cart.productKeys.length > 0 && (
           <Card
@@ -32,7 +32,7 @@ export class Cart extends React.Component {
         <AddMoreButton
           message={this.props.cart.productKeys.length > 0 ? "Add more" : "Add your first item"}
           onPress={() => this.props.navigation.navigate(PAGE_PRODUCT_PICKER)}/>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -1,6 +1,7 @@
 import {ACTION_CART_ADD_PRODUCT, ACTION_CART_CLEAR} from "../actions/cartActions";
 import {rules} from "../models/rules";
 import {products} from "../models/products";
+import {customers} from "../models/customers";
 
 export const cartReducer = (state = {productKeys: []}, action) => {
 
@@ -18,6 +19,7 @@ export const cartReducer = (state = {productKeys: []}, action) => {
       newState = {};
       newState.productKeys = state.productKeys.concat(action.productKey);
       newState.customerKey = action.customerKey;
+      newState.customer = customers.find(customer => customer.key === newState.customerKey);
       newState.products = newState.productKeys
         .map(key => products.find(product => product.key === key));
       newState.matchedRules = rules
