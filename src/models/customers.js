@@ -1,4 +1,4 @@
-export const privilegedCustomers = [{
+export const customers = [{
   key: 'unilever',
   name: 'Unilever'
 }, {

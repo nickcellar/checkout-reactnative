@@ -1,9 +1,9 @@
 import {Picker, View} from "react-native";
 import React from "react";
-import {privilegedCustomers} from "../models/privilegedCustomers";
+import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
 
-export class UserPicker extends React.Component {
+export class CustomerPicker extends React.Component {
 
   static navigationOptions = {
     title: 'Welcome',
@@ -12,7 +12,7 @@ export class UserPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerKey: privilegedCustomers[0].key
+      customerKey: customers[0].key
     }
   }
 
@@ -30,7 +30,7 @@ export class UserPicker extends React.Component {
               this.setState({customerKey: key})
             }}>
             {
-              privilegedCustomers.map((customer, index) => {
+              customers.map((customer, index) => {
                 return (
                   <Picker.Item
                     styles={{background: "#ffffff"}}

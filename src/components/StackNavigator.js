@@ -1,10 +1,10 @@
 import {createStackNavigator} from "react-navigation";
-import {UserPicker} from "./UserPicker";
+import {CustomerPicker} from "./CustomerPicker";
 import {Cart} from "./Cart";
 import {ProductPicker} from "./ProductPicker";
 
 export const StackNavigator = createStackNavigator({
-  UserPicker: {screen: UserPicker},
+  CustomerPicker: {screen: CustomerPicker},
   Cart: {screen: Cart},
   NewItem: {screen: ProductPicker},
 });
