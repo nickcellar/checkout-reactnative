@@ -3,7 +3,7 @@ import {specialRules} from "../models/specialRules";
 import {rules} from "../models/rules";
 import {products} from "../models/products";
 
-export const cartReducers = (state = {productKeys: []}, action) => {
+export const cartReducer = (state = {productKeys: []}, action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);

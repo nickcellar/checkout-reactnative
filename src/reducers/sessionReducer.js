@@ -1,6 +1,6 @@
-import {products} from "../models/products";
+import {ACTION_SET_CURRENT_CUSTOMER} from "../actions/sessionActions";
 
-export const productReducers = (state = products, action) => {
+export const sessionReducer = (state = {}, action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);
@@ -9,6 +9,11 @@ export const productReducers = (state = products, action) => {
   let newState;
 
   switch (action.type) {
+
+    case ACTION_SET_CURRENT_CUSTOMER:
+      newState = state;
+      state.currentCustomer = action.customerKey;
+      break;
 
     default:
       // console.debug("Getting initial cart");

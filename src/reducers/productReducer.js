@@ -1,6 +1,6 @@
-import {customers} from "../models/customers";
+import {products} from "../models/products";
 
-export const customerReducers = (state = customers, action) => {
+export const productReducer = (state = products, action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);

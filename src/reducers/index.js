@@ -1,12 +1,14 @@
 import {combineReducers} from 'redux'
-import {cartReducers} from "./cartReducers";
-import {customerReducers} from "./customerReducers";
-import {sessionReducers} from "./sessionReducers";
-import {productReducers} from "./productReducers";
+import {cartReducer} from "./cartReducer";
+import {customerReducer} from "./customerReducer";
+import {sessionReducer} from "./sessionReducer";
+import {productReducer} from "./productReducer";
+import {ruleReducer} from "./ruleReducer";
 
 export const reducers = combineReducers({
-  cart: cartReducers,
-  customers: customerReducers,
-  session: sessionReducers,
-  products: productReducers,
+  customers: customerReducer,
+  products: productReducer,
+  rules: ruleReducer,
+  session: sessionReducer,
+  cart: cartReducer,
 });
