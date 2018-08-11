@@ -3,8 +3,13 @@ import {CustomerPickerContainer} from "./CustomerPicker";
 import {CartContainer} from "./Cart";
 import {ProductPickerContainer} from "./ProductPicker";
 
-export const StackNavigator = createStackNavigator({
-  CustomerPicker: {screen: CustomerPickerContainer},
-  Cart: {screen: CartContainer},
-  NewItem: {screen: ProductPickerContainer},
-});
+export const PAGE_CUSTOMER_PICKER = "PAGE_CUSTOMER_PICKER";
+export const PAGE_CART = "PAGE_CART";
+export const PAGE_PRODUCT_PICKER = "PAGE_PRODUCT_PICKER";
+
+const pages = {};
+pages[PAGE_CUSTOMER_PICKER]= {screen: CustomerPickerContainer};
+pages[PAGE_CART]= {screen: CartContainer};
+pages[PAGE_PRODUCT_PICKER]= {screen: ProductPickerContainer};
+
+export const StackNavigator = createStackNavigator(pages);

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
 import {setCurrentCustomerAction} from "../actions/sessionActions";
+import {PAGE_CART} from "./StackNavigator";
 
 export class CustomerPicker extends React.Component {
 
@@ -48,7 +49,7 @@ export class CustomerPicker extends React.Component {
           title="New checkout"
           onPress={() => {
             this.props.setCurrentCustomer(this.state.customerKey);
-            navigate('Cart', {customerKey: this.state.customerKey})
+            navigate(PAGE_CART)
           }}
         />
       </View>
