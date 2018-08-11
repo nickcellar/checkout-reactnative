@@ -1,5 +1,4 @@
 import {ACTION_ADD_PRODUCT, ACTION_REMOVE_PRODUCT} from "../actions/cartActions";
-import {specialRules} from "../models/specialRules";
 import {rules} from "../models/rules";
 import {products} from "../models/products";
 

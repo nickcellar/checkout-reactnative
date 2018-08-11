@@ -3,7 +3,6 @@ import {FlatList, View} from "react-native";
 import {ProductCard} from "./ProductCard";
 import {products} from "../models/products";
 import {connect} from "react-redux";
-import {Cart} from "./Cart";
 import {addProductAction} from "../actions/cartActions";
 
 export class ProductPicker extends React.Component {

@@ -1,8 +1,6 @@
 import {Alert, View} from "react-native";
 import React from "react";
-import {products} from "../models/products";
-import {Button, Card, Icon} from "react-native-elements";
-import {specialRules} from "../models/specialRules";
+import {Card, Icon} from "react-native-elements";
 import {connect} from "react-redux";
 import {addProductAction} from "../actions/cartActions";
 import {ProductListItem} from "./ProductListItem";

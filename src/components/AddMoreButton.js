@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ListItem} from "react-native-elements";
+import {Button} from "react-native-elements";
 import {View} from "react-native";
 
 export class AddMoreButton extends React.Component {

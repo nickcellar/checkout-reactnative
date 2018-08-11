@@ -3,7 +3,6 @@ import {Picker, View} from "react-native";
 import {connect} from "react-redux";
 import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
-import {ProductPicker} from "./ProductPicker";
 import {setCurrentCustomerAction} from "../actions/sessionActions";
 
 export class CustomerPicker extends React.Component {
