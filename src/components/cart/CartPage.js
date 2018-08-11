@@ -11,20 +11,9 @@ export class CartPage extends React.Component {
   static navigationOptions = ({navigation}) => {
     return ({
       title: 'Your shopping cart',
-      headerRight: (<CheckoutIconContainer onPress={() => navigation.state.params.checkout()}/>),
+      headerRight: (<CheckoutIconContainer navigation={navigation}/>),
     })
   };
-
-  componentDidMount() {
-    this.props.navigation.setParams({
-      checkout: () => {
-        CheckoutAlert(this.props.cart.totalPrice, () => {
-          this.props.checkout(this.props.cart);
-          this.props.navigation.popToTop();
-        })
-      }
-    });
-  }
 
   render() {
     return (
@@ -33,20 +22,4 @@ export class CartPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({
-    cart: state.cart
-  })
-};
-
-const mapDispatchToProps = dispatch => ({
-  checkout: (cart) => {
-    dispatch(addRecordAction(cart));
-    dispatch(clearCartAction());
-  }
-});
-
-export const CartPageContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartPage);
+export const CartPageContainer = connect()(CartPage);

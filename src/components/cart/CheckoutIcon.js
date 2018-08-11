@@ -4,6 +4,7 @@ import {CartPage} from "./CartPage";
 import {clearCartAction} from "../../actions/cartActions";
 import {addRecordAction} from "../../actions/recordActions";
 import {connect} from "react-redux";
+import {CheckoutAlert} from "./CheckoutAlert";
 
 
 export class CheckoutIcon extends React.Component {
@@ -12,7 +13,7 @@ export class CheckoutIcon extends React.Component {
     return (
       <Icon
         containerStyle={{marginRight: 16}}
-        onPress={() => this.isReady() && this.props.onPress()}
+        onPress={() => this.checkout()}
         name='md-checkmark'
         color={this.isReady() ? '#000000' : '#bbbbbb'}
         type='ionicon'
@@ -22,6 +23,15 @@ export class CheckoutIcon extends React.Component {
 
   isReady() {
     return this.props.cart.productKeys.length > 0
+  }
+
+  checkout() {
+    if (this.isReady()) {
+      CheckoutAlert(this.props.cart.totalPrice, () => {
+        this.props.checkout(this.props.cart);
+        this.props.navigation.popToTop();
+      })
+    }
   }
 }
 
