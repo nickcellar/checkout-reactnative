@@ -14,8 +14,8 @@ export const cartReducers = (state = {productKeys: []}, action) => {
   switch (action.type) {
 
     case ACTION_ADD_PRODUCT:
-      console.log("Adding product", action.productKey);
-      console.debug("> action", action);
+      console.log(`Adding product productKey:${action.productKey} customerKey:${action.customerKey}`);
+      // console.debug("> action", action);
       newState = {};
       newState.productKeys = [...state.productKeys, action.productKey];
       newState.products = products
@@ -36,6 +36,6 @@ export const cartReducers = (state = {productKeys: []}, action) => {
       break;
   }
 
-  console.debug("> newState", newState);
+  // console.debug("> newState", newState);
   return newState;
 };

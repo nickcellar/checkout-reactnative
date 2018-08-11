@@ -27,7 +27,6 @@ export class Cart extends React.Component {
     super(props);
     console.log("In the cart now");
     console.log("> Current customer", props.currentCustomer);
-
     this.state = {
       selectedItems: []
     }
@@ -42,21 +41,7 @@ export class Cart extends React.Component {
   render() {
     const navigate = this.props.navigation.navigate;
     if (this.state.selectedItems.length === 0) {
-      return (
-        <View style={{marginTop: 16}}>
-          <Button
-            raised
-            containerStyle={{margin: 8}}
-            backgroundColor="#03A9F4"
-            title="Add your first item"
-            onPress={() =>
-              navigate('NewItem', {
-                onProductSelected: this.onProductSelected.bind(this)
-              })
-            }
-          />
-        </View>
-      )
+      return this.getAddMoreItemView("Add your first item")
     }
     return (
       <View>
@@ -66,21 +51,26 @@ export class Cart extends React.Component {
           {this.getSelectedItemViews()}
           {this.getPassedRuleDiscountViews()}
         </Card>
-        <View style={{marginTop: 16}}>
-          <Button
-            raised
-            containerStyle={{margin: 8}}
-            backgroundColor="#03A9F4"
-            title="Add more"
-            onPress={() =>
-              navigate('NewItem', {
-                onProductSelected: this.onProductSelected.bind(this)
-              })
-            }
-          />
-        </View>
+        {this.getAddMoreItemView("Add more")}
       </View>
     );
+  }
+
+  getAddMoreItemView(message) {
+    const navigate = this.props.navigation.navigate;
+    return (
+      <View style={{marginTop: 16}}>
+        <Button
+          raised
+          containerStyle={{margin: 8}}
+          backgroundColor="#03A9F4"
+          title="Add more"
+          onPress={() =>
+            navigate('NewItem', {onProductSelected: this.onProductSelected.bind(this)})
+          }
+        />
+      </View>
+    )
   }
 
   onDoneClicked() {
@@ -99,15 +89,15 @@ export class Cart extends React.Component {
   }
 
   getSelectedItemViews() {
-    return this.state.selectedItems.map((item, index) => {
+    return this.props.cart.products.map((product, index) => {
       return (
         <ListItem
           key={index}
           roundAvatar
           hideChevron={true}
-          rightTitle={`$${item.price}`}
-          title={item.name}
-          avatar={{uri: item.avatar}}
+          rightTitle={`$${product.price}`}
+          title={product.name}
+          avatar={{uri: product.avatar}}
         />
       );
     })
@@ -182,7 +172,7 @@ export class Cart extends React.Component {
 
 
 const mapStateToProps = state => {
-  // console.log(state);
+  console.log(state);
   return ({
     currentCustomerKey: state.session.currentCustomer,
     cart: state.cart
