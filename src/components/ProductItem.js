@@ -1,28 +1,19 @@
 import React from "react";
 import {Button, Card, Icon, Text} from 'react-native-elements'
 
-export class ProductView extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: props.product.item,
-      callback: props.callback
-    };
-  }
+export class ProductItem extends React.Component {
 
   render() {
     return (
       <Card
-        title={this.state.product.name}
+        title={this.props.product.item.name}
         image={require('../images/download.jpg')}>
         <Text style={{marginBottom: 10}}>
-          {this.state.product.description}
+          {this.props.product.item.description}
         </Text>
         <Button
           icon={<Icon name='code' color='#ffffff'/>}
           backgroundColor='#03A9F4'
-          // fontFamily='Lato'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           onPress={this.onPress.bind(this)}
           title='ADD NOW'/>
@@ -31,8 +22,8 @@ export class ProductView extends React.Component {
   }
 
   onPress() {
-    const key = this.state.product.key;
-    const callback = this.state.callback;
+    const key = this.props.product.item.key;
+    const callback = this.props.callback;
     console.log(`Product with key ${key} is pressed`);
     if (callback) {
       callback(key)

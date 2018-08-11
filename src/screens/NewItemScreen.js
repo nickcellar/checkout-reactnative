@@ -1,6 +1,6 @@
 import {Button, FlatList, View} from "react-native";
 import React from "react";
-import {ProductView} from "../views/ProductView";
+import {ProductItem} from "../components/ProductItem";
 import {products} from "../models/products";
 
 export class NewItemScreen extends React.Component {
@@ -20,7 +20,7 @@ export class NewItemScreen extends React.Component {
         <FlatList
           data={products}
           renderItem={(product) =>
-            <ProductView
+            <ProductItem
               key={product.key}
               callback={this.onProductSelected.bind(this)}
               product={product}/>
