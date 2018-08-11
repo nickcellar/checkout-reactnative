@@ -20,7 +20,7 @@ export class CartPage extends React.Component {
       checkout: () => {
         CheckoutAlert(this.props.cart.totalPrice, () => {
           this.props.checkout(this.props.cart);
-          this.props.navigation.goBack();
+          this.props.navigation.popToTop();
         })
       }
     });
