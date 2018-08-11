@@ -5,11 +5,7 @@ import {connect} from "react-redux";
 import {addProductAction} from "../../actions/cartActions";
 
 export class ProductPicker extends React.Component {
-
-  static navigationOptions = {
-    title: 'New Item',
-  };
-
+  
   render() {
     return (
       <View>
