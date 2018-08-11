@@ -13,7 +13,7 @@ export class RecordList extends React.Component {
           this.props.records.map((record, index) => (
             <RecordListItem cart={record.cart}/>
           )) : (
-            <Text>You did not have any purchase history yet</Text>
+            <Text style={{padding: 16}}>You did not have any purchase history yet</Text>
           )}
       </View>
     );
@@ -26,14 +26,6 @@ const mapStateToProps = state => {
   })
 };
 
-const mapDispatchToProps = dispatch => ({
-  checkout: (cart) => {
-    // dispatch(addCheckoutAction(cart));
-    // dispatch(clearCartAction());
-  }
-});
-
 export const RecordListContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(RecordList);

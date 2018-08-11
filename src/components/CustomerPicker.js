@@ -5,7 +5,7 @@ import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
 import {setCurrentCustomerAction} from "../actions/sessionActions";
 import {PAGE_CART} from "./StackNavigator";
-import {RecordListContainer} from "./RecordList";
+import {RecordListContainer} from "./record/RecordList";
 
 export class CustomerPicker extends React.Component {
 
