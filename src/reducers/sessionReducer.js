@@ -1,4 +1,5 @@
 import {ACTION_SET_CURRENT_CUSTOMER} from "../actions/sessionActions";
+import {customers} from "../models/customers";
 
 export const sessionReducer = (state = {}, action) => {
 
@@ -12,7 +13,8 @@ export const sessionReducer = (state = {}, action) => {
 
     case ACTION_SET_CURRENT_CUSTOMER:
       newState = state;
-      state.currentCustomer = action.customerKey;
+      state.customerKey = action.customerKey;
+      state.customer = customers.find(customer => customer.key === state.customerKey);
       break;
 
     default:
