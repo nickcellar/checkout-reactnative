@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {CustomerPickerContainer} from "./CustomerPicker";
 
-export class CustomerPage extends React.Component {
+export class CustomerSelectionPage extends React.Component {
 
   static navigationOptions = {
     title: 'Select a customer',
@@ -21,6 +21,6 @@ const mapStateToProps = state => {
   })
 };
 
-export const CustomerPageContainer = connect(
+export const CustomerSelectionPageContainer = connect(
   mapStateToProps,
-)(CustomerPage);
+)(CustomerSelectionPage);
