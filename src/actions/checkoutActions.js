@@ -1,5 +1,6 @@
-export const ACTION_CHECKOUT = 'ACTION_CHECKOUT';
+export const ACTION_ADD_CHECKOUT = 'ACTION_ADD_CHECKOUT';
 
-export const checkoutAction = () => ({
-  type: ACTION_CHECKOUT,
+export const addCheckoutAction = (cart) => ({
+  type: ACTION_ADD_CHECKOUT,
+  checkout: cart
 });

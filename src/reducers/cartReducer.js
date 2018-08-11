@@ -1,4 +1,4 @@
-import {ACTION_ADD_PRODUCT, ACTION_REMOVE_PRODUCT} from "../actions/cartActions";
+import {ACTION_CART_ADD_PRODUCT, ACTION_CART_CLEAR} from "../actions/cartActions";
 import {rules} from "../models/rules";
 import {products} from "../models/products";
 
@@ -12,12 +12,12 @@ export const cartReducer = (state = {productKeys: []}, action) => {
 
   switch (action.type) {
 
-    case ACTION_ADD_PRODUCT:
+    case ACTION_CART_ADD_PRODUCT:
       console.log(`Adding product productKey:${action.productKey} customerKey:${action.customerKey}`);
       // console.debug("> action", action);
       newState = {};
-      newState.productKeys = state.productKeys
-        .concat(action.productKey);
+      newState.productKeys = state.productKeys.concat(action.productKey);
+      newState.customerKey = action.customerKey;
       newState.products = newState.productKeys
         .map(key => products.find(product => product.key === key));
       newState.matchedRules = rules
@@ -44,10 +44,9 @@ export const cartReducer = (state = {productKeys: []}, action) => {
         newState.discounts.reduce((acc, discount) => acc + discount.amount, 0);
       break;
 
-    case ACTION_REMOVE_PRODUCT:
-      console.log("Toggling todo");
-      // FIXME
-      newState = state;
+    case ACTION_CART_CLEAR:
+      console.log("Clearing cart");
+      newState = {productKeys: []};
       break;
 
     default:

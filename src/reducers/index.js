@@ -4,6 +4,7 @@ import {customerReducer} from "./customerReducer";
 import {sessionReducer} from "./sessionReducer";
 import {productReducer} from "./productReducer";
 import {ruleReducer} from "./ruleReducer";
+import {checkoutReducer} from "./checkoutReducer";
 
 export const reducers = combineReducers({
   customers: customerReducer,
@@ -11,4 +12,5 @@ export const reducers = combineReducers({
   rules: ruleReducer,
   session: sessionReducer,
   cart: cartReducer,
+  checkout: checkoutReducer,
 });

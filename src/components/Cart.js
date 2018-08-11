@@ -1,15 +1,16 @@
-import {Alert, View} from "react-native";
+import {View} from "react-native";
 import React from "react";
-import {Card, Icon} from "react-native-elements";
+import {Card} from "react-native-elements";
 import {connect} from "react-redux";
-import {addProductAction} from "../actions/cartActions";
 import {ProductListItem} from "./ProductListItem";
 import {DiscountListItem} from "./DiscountListItem";
 import {FreeItemListItem} from "./FreeItemListItem";
 import {AddMoreButton} from "./AddMoreButton";
-import {checkoutAction} from "../actions/checkoutActions";
 import {CheckoutAlert} from "./CheckoutAlert";
 import {CheckoutIcon} from "./CheckoutIcon";
+import {PAGE_PRODUCT_PICKER} from "./StackNavigator";
+import {addCheckoutAction} from "../actions/checkoutActions";
+import {clearCartAction} from "../actions/cartActions";
 
 export class Cart extends React.Component {
 
@@ -24,16 +25,20 @@ export class Cart extends React.Component {
     this.props.navigation.setParams({
       checkout: () => {
         CheckoutAlert(this.props.cart.totalPrice, () => {
-          console.log("done :D")
+          this.props.checkout(this.props.cart);
+          this.props.navigation.goBack();
+
         })
       }
-    })
+    });
   }
 
   render() {
     if (this.props.cart.productKeys.length === 0) {
       return (
-        <AddMoreButton message="Add your first item" navigate={this.props.navigation.navigate}/>
+        <AddMoreButton
+          message="Add your first item"
+          onPress={() => this.props.navigation.navigate(PAGE_PRODUCT_PICKER)}/>
       )
     }
     return (
@@ -51,7 +56,9 @@ export class Cart extends React.Component {
             <FreeItemListItem key={`freeItem-${index}`} freeItem={freeItem}/>
           ))}
         </Card>
-        <AddMoreButton message="Add more" navigate={this.props.navigation.navigate}/>
+        <AddMoreButton
+          message="Add more"
+          onPress={() => this.props.navigation.navigate(PAGE_PRODUCT_PICKER)}/>
       </View>
     );
   }
@@ -65,7 +72,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  checkout: () => dispatch(checkoutAction())
+  checkout: (cart) => {
+    dispatch(addCheckoutAction(cart));
+    dispatch(clearCartAction());
+  }
 });
 
 export const CartContainer = connect(

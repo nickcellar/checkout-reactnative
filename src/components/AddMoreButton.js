@@ -13,7 +13,7 @@ export class AddMoreButton extends React.Component {
           containerStyle={{margin: 8}}
           backgroundColor="#03A9F4"
           title={this.props.message}
-          onPress={() => this.props.navigate(PAGE_PRODUCT_PICKER)}
+          onPress={() => this.props.onPress()}
         />
       </View>
     )
