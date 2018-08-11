@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {RecordListContainer} from "./RecordList";
-import {PAGE_CART, PAGE_PRODUCT_PICKER} from "../StackNavigator";
+import {PAGE_CART, PAGE_CUSTOMER_PICKER, PAGE_PRODUCT_PICKER} from "../StackNavigator";
 import {AddMoreButton} from "../AddMoreButton";
 import {View} from "react-native";
 
@@ -17,7 +17,7 @@ export class RecordPage extends React.Component {
         <RecordListContainer/>
         <AddMoreButton
           message="Start a new checkout"
-          onPress={() => this.props.navigation.navigate(PAGE_CART)}/>
+          onPress={() => this.props.navigation.navigate(PAGE_CUSTOMER_PICKER)}/>
       </View>
     );
   }

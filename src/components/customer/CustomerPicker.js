@@ -1,17 +1,13 @@
 import React from "react";
 import {Picker, View} from "react-native";
 import {connect} from "react-redux";
-import {customers} from "../models/customers";
+import {customers} from "../../models/customers";
 import {Button, Text} from "react-native-elements";
-import {setCurrentCustomerAction} from "../actions/sessionActions";
-import {PAGE_CART} from "./StackNavigator";
-import {RecordListContainer} from "./record/RecordList";
+import {setCurrentCustomerAction} from "../../actions/sessionActions";
+import {PAGE_CART} from "../StackNavigator";
+import {RecordListContainer} from "../record/RecordList";
 
 export class CustomerPicker extends React.Component {
-
-  static navigationOptions = {
-    title: 'Welcome',
-  };
 
   constructor(props) {
     super(props);
@@ -23,9 +19,8 @@ export class CustomerPicker extends React.Component {
   render() {
     return (
       <View>
-        <RecordListContainer/>
         <View style={{margin: 14}}>
-          <Text style={{marginBottom: 8}}>Please select the client:</Text>
+          <Text style={{marginBottom: 8}}>Please select the customer you are on behalf of.</Text>
           <Picker
             style={{backgroundColor: "#ffffff", borderColor: "#444444"}}
             mode={"dropdown"}
@@ -41,7 +36,8 @@ export class CustomerPicker extends React.Component {
           </Picker>
         </View>
         <Button
-          title="New checkout"
+          title="Next"
+          backgroundColor="#03A9F4"
           onPress={() => {
             this.props.setCurrentCustomer(this.state.customerKey);
             this.props.navigation.navigate(PAGE_CART)
