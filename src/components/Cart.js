@@ -7,6 +7,7 @@ import {setCurrentCustomerAction} from "../actions/sessionActions";
 import {connect} from "react-redux";
 import {CustomerPicker} from "./CustomerPicker";
 import {addProductAction} from "../actions/cartActions";
+import {ProductListItem} from "./ProductListItem";
 
 export class Cart extends React.Component {
 
@@ -48,7 +49,9 @@ export class Cart extends React.Component {
         <Card
           containerStyle={{paddingBottom: 0}}
           title={`TOTAL PRICE: $${this.getTotalPrice()}`}>
-          {this.getSelectedItemViews()}
+          {this.props.cart.products.map((product, index) => (
+            <ProductListItem index={index} product={product}/>
+          ))}
           {this.getPassedRuleDiscountViews()}
         </Card>
         {this.getAddMoreItemView("Add more")}
@@ -86,21 +89,6 @@ export class Cart extends React.Component {
         onPress: () => console.log('OK Pressed')
       }]
     )
-  }
-
-  getSelectedItemViews() {
-    return this.props.cart.products.map((product, index) => {
-      return (
-        <ListItem
-          key={index}
-          roundAvatar
-          hideChevron={true}
-          rightTitle={`$${product.price}`}
-          title={product.name}
-          avatar={{uri: product.avatar}}
-        />
-      );
-    })
   }
 
   getPassedRules() {

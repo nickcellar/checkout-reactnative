@@ -1,6 +1,6 @@
 import React from "react";
 import {FlatList, View} from "react-native";
-import {ProductItem} from "./ProductItem";
+import {ProductCard} from "./ProductCard";
 import {products} from "../models/products";
 
 export class ProductPicker extends React.Component {
@@ -15,7 +15,7 @@ export class ProductPicker extends React.Component {
         <FlatList
           data={products}
           renderItem={(product) =>
-            <ProductItem
+            <ProductCard
               key={product.key}
               callback={this.onProductSelected.bind(this)}
               product={product}/>

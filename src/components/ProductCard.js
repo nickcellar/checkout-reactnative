@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Card, Icon, Text} from 'react-native-elements'
 
-export class ProductItem extends React.Component {
+export class ProductCard extends React.Component {
 
   render() {
     return (
