@@ -1,8 +1,8 @@
 import React from "react";
 import {Card} from "react-native-elements";
-import {ProductListItem} from "../cart/ProductListItem";
-import {DiscountListItem} from "../cart/DiscountListItem";
-import {FreeItemListItem} from "../cart/FreeItemListItem";
+import {ProductListItem} from "../common/ProductListItem";
+import {DiscountListItem} from "../common/DiscountListItem";
+import {FreeItemListItem} from "../common/FreeItemListItem";
 
 export class RecordListItem extends React.Component {
 

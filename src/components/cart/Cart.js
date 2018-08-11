@@ -2,10 +2,10 @@ import {View} from "react-native";
 import React from "react";
 import {Card, Text} from "react-native-elements";
 import {connect} from "react-redux";
-import {ProductListItem} from "./ProductListItem";
-import {DiscountListItem} from "./DiscountListItem";
-import {FreeItemListItem} from "./FreeItemListItem";
-import {AddMoreButton} from "../AddMoreButton";
+import {ProductListItem} from "../common/ProductListItem";
+import {DiscountListItem} from "../common/DiscountListItem";
+import {FreeItemListItem} from "../common/FreeItemListItem";
+import {AddMoreButton} from "../common/AddMoreButton";
 import {PAGE_PRODUCT_PICKER} from "../StackNavigator";
 
 export class Cart extends React.Component {
