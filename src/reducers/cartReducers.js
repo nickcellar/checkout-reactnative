@@ -2,9 +2,9 @@ import {ACTION_ADD_PRODUCT, ACTION_REMOVE_PRODUCT} from "../actions/cartActions"
 
 export const cartReducers = (state = [], action) => {
 
-  console.log("Cart reducers");
-  console.log("> action", action);
-  console.log("> state", state);
+  // console.debug("Cart reducers");
+  // console.debug("> action", action);
+  // console.debug("> state", state);
 
   let newState;
 
@@ -24,11 +24,11 @@ export const cartReducers = (state = [], action) => {
       break;
 
     default:
-      console.debug("Getting initial cart");
+      // console.debug("Getting initial cart");
       newState = state;
       break;
   }
 
-  console.log("> newState", newState);
+  // console.debug("> newState", newState);
   return newState;
 };
