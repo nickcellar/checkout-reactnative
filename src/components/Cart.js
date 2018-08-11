@@ -4,10 +4,10 @@ import {products} from "../models/products";
 import {Button, Card, Icon, ListItem} from "react-native-elements";
 import {specialRules} from "../models/specialRules";
 
-export class CheckoutScreen extends React.Component {
+export class Cart extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Checkout',
+    title: 'Cart',
     headerRight: (
       <Icon
         containerStyle={{marginRight: 16}}

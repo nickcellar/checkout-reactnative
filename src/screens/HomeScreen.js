@@ -45,7 +45,7 @@ export class HomeScreen extends React.Component {
         <Button
           title="New checkout"
           onPress={() => {
-            navigate('Checkout', {customerKey: this.state.customerKey})
+            navigate('Cart', {customerKey: this.state.customerKey})
           }}
         />
       </View>
