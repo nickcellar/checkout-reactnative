@@ -7,9 +7,7 @@ export const rules = [{
   criteria: (productKeys) => {
     return productKeys.filter(key => key === "classic").length >= 2
   },
-  discount: () => {
-    return null
-  },
+  discount: null,
   freeItem: {
     type: 'product',
     key: 'classic',
@@ -45,9 +43,7 @@ export const rules = [{
   criteria: (productKeys) => {
     return productKeys.filter(key => key === "classic").length >= 4
   },
-  discount: (productKeys) => {
-    return null
-  },
+  discount: null,
   freeItem: {
     type: 'product',
     key: 'classic',

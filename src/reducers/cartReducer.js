@@ -23,15 +23,16 @@ export const cartReducer = (state = {productKeys: []}, action) => {
       newState.matchedRules = rules
         .filter(rule => rule.customerKey === action.customerKey && rule.criteria(newState.productKeys));
       newState.discounts = newState.matchedRules
+        .filter(result => result.discount !== null)
         .map(rule => {
           return {
             ruleKey: rule.key,
             message: rule.message,
             amount: rule.discount(newState.productKeys)
           }
-        })
-        .filter(result => result.amount !== null);
+        });
       newState.freeItems = newState.matchedRules
+        .filter(result => result.freeItem !== null)
         .map(rule => {
           return {
             ruleKey: rule.key,
