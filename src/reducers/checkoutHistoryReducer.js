@@ -56,6 +56,6 @@ export const cartReducer = (state = {productKeys: []}, action) => {
       break;
   }
 
-  // console.debug("> newState", newState);
+  console.debug("> newState", newState);
   return newState;
 };

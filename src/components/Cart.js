@@ -7,25 +7,26 @@ import {ProductListItem} from "./ProductListItem";
 import {DiscountListItem} from "./DiscountListItem";
 import {FreeItemListItem} from "./FreeItemListItem";
 import {AddMoreButton} from "./AddMoreButton";
+import {checkoutAction} from "../actions/checkoutActions";
+import {CheckoutAlert} from "./CheckoutAlert";
+import {CheckoutIcon} from "./CheckoutIcon";
 
 export class Cart extends React.Component {
 
-  static navigationOptions = ({navigation}) => ({
-    title: 'Cart',
-    headerRight: (
-      <Icon
-        containerStyle={{marginRight: 16}}
-        onPress={navigation.state.params.onDoneClicked}
-        name='md-checkmark'
-        color='#000000'
-        type='ionicon'
-      />
-    ),
-  });
+  static navigationOptions = ({navigation}) => {
+    return ({
+      title: 'Cart',
+      headerRight: (<CheckoutIcon onPress={() => navigation.state.params.checkout()}/>),
+    })
+  };
 
   componentDidMount() {
     this.props.navigation.setParams({
-      onDoneClicked: this.onDoneClicked.bind(this)
+      checkout: () => {
+        CheckoutAlert(this.props.cart.totalPrice, () => {
+          console.log("done :D")
+        })
+      }
     })
   }
 
@@ -54,21 +55,6 @@ export class Cart extends React.Component {
       </View>
     );
   }
-
-  onDoneClicked() {
-    Alert.alert(
-      'Are you sure to checkout?',
-      `The total price is ${this.props.cart.totalPrice}`,
-      [{
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel'
-      }, {
-        text: 'OK',
-        onPress: () => console.log('OK Pressed')
-      }]
-    )
-  }
 }
 
 const mapStateToProps = state => {
@@ -79,7 +65,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addProduct: (customerKey, productKey) => dispatch(addProductAction(customerKey, productKey))
+  checkout: () => dispatch(checkoutAction())
 });
 
 export const CartContainer = connect(
