@@ -10,7 +10,7 @@ export class ProductListItem extends React.Component {
         hideChevron={true}
         rightTitle={`$${this.props.product.price}`}
         title={this.props.product.name}
-        avatar={{uri: this.props.product.avatar}}
+        avatar={this.props.product.image}
       />
     )
   }

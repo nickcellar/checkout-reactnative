@@ -10,7 +10,7 @@ export class FreeItemListItem extends React.Component {
         hideChevron={true}
         title={this.props.freeItem.item.message}
         subtitle={this.props.freeItem.message}
-        avatar={{uri: this.props.freeItem.avatar}}
+        avatar={require('../../../static/images/freeitem.png')}
       />
     )
   }

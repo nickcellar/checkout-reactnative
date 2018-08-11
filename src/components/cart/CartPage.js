@@ -35,7 +35,6 @@ export class CartPage extends React.Component {
 
 const mapStateToProps = state => {
   return ({
-    currentCustomerKey: state.session.currentCustomer,
     cart: state.cart
   })
 };

@@ -24,14 +24,14 @@ export class ProductPicker extends React.Component {
 
   onProductSelected(productKey) {
     console.log(`Item with key ${productKey} is selected as new item`);
-    this.props.addProduct(this.props.currentCustomerKey, productKey);
+    this.props.addProduct(this.props.session.customerKey, productKey);
     this.props.navigation.goBack();
   }
 }
 
 const mapStateToProps = state => {
   return ({
-    currentCustomerKey: state.session.currentCustomer,
+    session: state.session,
     products: state.products,
   })
 };
