@@ -10,14 +10,14 @@ export class RecordListItem extends React.Component {
     return (
       <Card
         containerStyle={{paddingBottom: 2}}
-        title={`TOTAL PRICE: $${this.props.cart.totalPrice}`}>
-        {this.props.cart.products.map((product, index) => (
+        title={`TOTAL: $${this.props.record.cart.totalPrice}\n${this.props.record.timestamp.format("dddd, MMMM Do YYYY, h:mm:ss a")}`}>
+        {this.props.record.cart.products.map((product, index) => (
           <ProductListItem key={`product-${index}`} product={product}/>
         ))}
-        {this.props.cart.discounts.map((discount, index) => (
+        {this.props.record.cart.discounts.map((discount, index) => (
           <DiscountListItem key={`discount-${index}`} discount={discount}/>
         ))}
-        {this.props.cart.freeItems.map((freeItem, index) => (
+        {this.props.record.cart.freeItems.map((freeItem, index) => (
           <FreeItemListItem key={`freeItem-${index}`} freeItem={freeItem}/>
         ))}
       </Card>
