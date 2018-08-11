@@ -1,7 +1,9 @@
-import {Picker, View} from "react-native";
 import React from "react";
+import {Picker, View} from "react-native";
+import {connect} from "react-redux";
 import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
+import {ProductPicker} from "./ProductPicker";
 
 export class CustomerPicker extends React.Component {
 
@@ -11,6 +13,7 @@ export class CustomerPicker extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       customerKey: customers[0].key
     }
@@ -30,7 +33,7 @@ export class CustomerPicker extends React.Component {
               this.setState({customerKey: key})
             }}>
             {
-              customers.map((customer, index) => {
+              this.props.customers.map((customer, index) => {
                 return (
                   <Picker.Item
                     styles={{background: "#ffffff"}}
@@ -52,3 +55,13 @@ export class CustomerPicker extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return ({
+    customers: state.customers
+  })
+};
+export const CustomerPickerContainer = connect(
+  mapStateToProps,
+  // mapDispatchToProps
+)(CustomerPicker);
