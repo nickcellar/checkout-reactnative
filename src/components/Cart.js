@@ -9,7 +9,7 @@ import {AddMoreButton} from "./AddMoreButton";
 import {CheckoutAlert} from "./CheckoutAlert";
 import {CheckoutIcon} from "./CheckoutIcon";
 import {PAGE_PRODUCT_PICKER} from "./StackNavigator";
-import {addCheckoutAction} from "../actions/checkoutActions";
+import {addRecordAction} from "../actions/recordActions";
 import {clearCartAction} from "../actions/cartActions";
 
 export class Cart extends React.Component {
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   checkout: (cart) => {
-    dispatch(addCheckoutAction(cart));
+    dispatch(addRecordAction(cart));
     dispatch(clearCartAction());
   }
 });

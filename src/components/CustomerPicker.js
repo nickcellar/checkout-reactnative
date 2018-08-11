@@ -5,6 +5,7 @@ import {customers} from "../models/customers";
 import {Button, Text} from "react-native-elements";
 import {setCurrentCustomerAction} from "../actions/sessionActions";
 import {PAGE_CART} from "./StackNavigator";
+import {RecordListContainer} from "./RecordList";
 
 export class CustomerPicker extends React.Component {
 
@@ -24,6 +25,7 @@ export class CustomerPicker extends React.Component {
     return (
       <View>
         <View style={{margin: 14}}>
+          <RecordListContainer/>
           <Text style={{marginBottom: 8}}>Please select the client:</Text>
           <Picker
             style={{backgroundColor: "#ffffff", borderColor: "#444444"}}

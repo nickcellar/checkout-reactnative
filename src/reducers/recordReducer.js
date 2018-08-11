@@ -1,9 +1,9 @@
-import {ACTION_ADD_CHECKOUT} from "../actions/checkoutActions";
+import {ACTION_ADD_RECORD} from "../actions/recordActions";
 import moment from "moment";
 
 let id = 1;
 
-export const checkoutReducer = (state = [], action) => {
+export const recordReducer = (state = [], action) => {
 
   // console.debug("Cart reducers");
   // console.debug("> action", action);
@@ -13,12 +13,12 @@ export const checkoutReducer = (state = [], action) => {
 
   switch (action.type) {
 
-    case ACTION_ADD_CHECKOUT:
-      console.log(`Adding checkout`);
-      console.debug("> action", action);
+    case ACTION_ADD_RECORD:
+      console.log(`Adding record`);
+      // console.debug("> action", action);
       newState = state.concat({
         id: id++,
-        checkout: action.checkout,
+        cart: action.cart,
         timestamp: moment()
       });
       break;
@@ -29,6 +29,6 @@ export const checkoutReducer = (state = [], action) => {
       break;
   }
 
-  console.debug("> newState", newState);
+  // console.debug("> newState", newState);
   return newState;
 };
