@@ -1,14 +1,13 @@
-import {View, Alert} from "react-native";
+import {Alert, View} from "react-native";
 import React from "react";
 import {products} from "../models/products";
-import {Button, Card, Icon, ListItem} from "react-native-elements";
+import {Button, Card, Icon} from "react-native-elements";
 import {specialRules} from "../models/specialRules";
-import {setCurrentCustomerAction} from "../actions/sessionActions";
 import {connect} from "react-redux";
-import {CustomerPicker} from "./CustomerPicker";
 import {addProductAction} from "../actions/cartActions";
 import {ProductListItem} from "./ProductListItem";
 import {DiscountListItem} from "./DiscountListItem";
+import {FreeItemListItem} from "./FreeItemListItem";
 
 export class Cart extends React.Component {
 
@@ -57,7 +56,7 @@ export class Cart extends React.Component {
             <DiscountListItem key={`discount-${index}`} discount={discount}/>
           ))}
           {this.props.cart.freeItems.map((freeItem, index) => (
-            <DiscountListItem key={`freeItem-${index}`} freeItem={freeItem}/>
+            <FreeItemListItem key={`freeItem-${index}`} freeItem={freeItem}/>
           ))}
         </Card>
         {this.getAddMoreItemView("Add more")}

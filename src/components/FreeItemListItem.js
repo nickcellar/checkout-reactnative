@@ -1,7 +1,7 @@
 import React from "react";
 import {ListItem} from "react-native-elements";
 
-export class DiscountListItem extends React.Component {
+export class FreeItemListItem extends React.Component {
 
   render() {
     return (
