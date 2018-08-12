@@ -14,8 +14,12 @@ that can apply to the customer to generate discounts and free items.
 
 ### Videos from Android and iOS
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Bka-78pe2cE/0.jpg)](https://www.youtube.com/watch?v=Bka-78pe2cE)
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/whVzfG0HHog/0.jpg)](https://www.youtube.com/watch?v=whVzfG0HHog)
+<a href="https://www.youtube.com/watch?v=Bka-78pe2cE">
+  <img src="https://img.youtube.com/vi/Bka-78pe2cE/0.jpg" width="40%">
+</a>
+<a href="https://www.youtube.com/watch?v=whVzfG0HHog">
+  <img src="https://img.youtube.com/vi/whVzfG0HHog/0.jpg" width="40%">
+</a>
 
 ## How to use project
 
