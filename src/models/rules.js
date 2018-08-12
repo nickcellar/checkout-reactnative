@@ -62,6 +62,8 @@ export const rules = [{
   },
   freeItem: null
 }, {
+  key: 6,
+  customerKey: 'ford',
   message: "Gets a discount on Premium Ads when 3 or more are purchased. The price drops to $389.99 per ad",
   criteria: (productKeys) => {
     return productKeys.filter(key => key === "premium").length >= 3
