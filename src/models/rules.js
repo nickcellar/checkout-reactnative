@@ -19,7 +19,7 @@ export const rules = [{
   customerKey: 'apple',
   message: "Gets a discount on Standout Ads where the price drops to $299.99 per ad",
   criteria: (productKeys) => {
-    return true
+    return productKeys.filter(key => key === "standout").length >= 1
   },
   discount: (productKeys) => {
     return productKeys.filter(key => key === "standout").length * (products.find(product => product.key === "standout").price - 299.99)
@@ -55,7 +55,7 @@ export const rules = [{
   customerKey: 'ford',
   message: "Gets a discount on Standout Ads where the price drops to $309.99 per ad",
   criteria: (productKeys) => {
-    return true
+    return productKeys.filter(key => key === "standout").length >= 1
   },
   discount: (productKeys) => {
     return productKeys.filter(key => key === "standout").length * (products.find(product => product.key === "premium").price - 309.99)
